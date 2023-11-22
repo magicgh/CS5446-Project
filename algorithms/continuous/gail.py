@@ -128,14 +128,14 @@ def gather_data(seed=0, buffer_size=20000,
 
 def gail(seed=1, buffer_size=20000,
          lr=1e-3, disc_lr=5e-4, gamma=0.95,
-         epoch=5, step_per_epoch=20000, episode_per_collect=16,
+         epoch=5, step_per_epoch=150000, episode_per_collect=16,
          repeat_per_collect=2, batch_size=128, disc_update_num=2,
-         hidden_sizes=[128, 128], training_num=8, test_num=100,
+         hidden_sizes=[64, 64], training_num=8, test_num=100,
          logdir="log", render=0.0, n_step=3,
          device="cuda" if torch.cuda.is_available() else "cpu",
          vf_coef=0.25, ent_coef=0.0, eps_clip=0.2, max_grad_norm=0.5,
          gae_lambda=0.95, rew_norm=1, dual_clip=None, value_clip=1, norm_adv=1,
-         recompute_adv=0, resume=False, save_interval=4, load_buffer_name=expert_file_name):
+         recompute_adv=0, resume=False, save_interval=4, load_buffer_name=expert_file_name()):
     if os.path.exists(load_buffer_name) and os.path.isfile(load_buffer_name):
         if load_buffer_name.endswith(".hdf5"):
             buffer = VectorReplayBuffer.load_hdf5(load_buffer_name)
